@@ -1,0 +1,16 @@
+
+.vs/
+
+Blazor.DF20.API/bin/
+
+Blazor.DF20.API/obj/
+
+*.user
+
+Blazor.DF20.Shared/bin/
+
+Blazor.DF20.Shared/obj/
+
+Blazor.DF20.WASM/bin/
+
+Blazor.DF20.WASM/obj/

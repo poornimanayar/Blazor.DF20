@@ -1,0 +1,47 @@
+﻿@inject IJSRuntime JSRuntime
+
+<h3>Lifecycle Methods</h3>
+
+<p>@FirstName @LastName</p>
+<p>@JobTitle</p>
+
+@code {
+
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        foreach(var param in parameters)
+        {
+            Console.WriteLine($"{param.Name} bound to value - {param.Value}");
+        }
+        return base.SetParametersAsync(parameters);
+    }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("Component initialised");
+        JobTitle = "Freelance Developer";
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        Console.WriteLine("Parameter value changed");
+        return base.OnParametersSetAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+
+        Console.WriteLine("Component rendered completely");
+       await JSRuntime.InvokeVoidAsync("alerts.showAlert", $"My name is {FirstName}. I am a {JobTitle}");
+    }
+
+    [Parameter]
+    public string FirstName { get; set; }
+
+    [Parameter]
+    public string LastName { get; set; }
+
+    [Parameter]
+    public string JobTitle { get; set; } = "Developer";
+}
+

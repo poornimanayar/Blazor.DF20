@@ -1,0 +1,49 @@
+﻿@page "/movielisting"
+@using Blazor.DF20.WASM.Components
+
+<h1>Movie Listing</h1>
+
+@if (Movies != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Release Year</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Movies)
+            {
+            <tr>
+                <td>@movie.Name</td>
+                @if (movie.ReleaseYear == default(int))
+                {
+                    <td>Unavailable</td>
+                }
+                else
+                {
+                    <td>@movie.ReleaseYear</td>
+                }
+                @if (movie.Genre != null)
+                {
+                    <td>@movie.Genre.Name</td>
+                }
+                else
+                {
+                    <td>Unavailable</td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+else
+{
+    <p>Loading....</p>
+}
+
+<QuickAddMovie @ref="QuickAddMovieForm" AddMovieEventCallBack="QuickAddMovieForm_CallbackAsync"></QuickAddMovie>

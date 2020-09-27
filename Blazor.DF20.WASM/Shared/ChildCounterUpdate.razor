@@ -1,0 +1,20 @@
+﻿<h1>Child Counter Two Way Binding</h1>
+
+<p>Current count: @ChildCounterUpdateValue</p>
+
+<button class="btn btn-primary" @onclick="IncrementCountChild">Update parent counter</button>
+
+@code {
+    [Parameter]
+    public int ChildCounterUpdateValue { get; set; }
+
+    [Parameter]
+    public EventCallback<int> ChildCounterUpdateValueChanged { get; set; }
+
+    private async Task IncrementCountChild()
+    {
+        ChildCounterUpdateValue = ChildCounterUpdateValue + 1;
+
+        await ChildCounterUpdateValueChanged.InvokeAsync(ChildCounterUpdateValue);
+    }
+}

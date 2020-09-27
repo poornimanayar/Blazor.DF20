@@ -1,0 +1,14 @@
+﻿using System.Collections.Generic;
+using Blazor.DF20.Shared.Models;
+
+namespace Blazor.DF20.API.Services
+{
+  public  interface IMovieRepository
+    {
+        IEnumerable<Movie> GetAllMovies();
+        Movie GetMovieById(int movieId);
+        Movie AddMovie(Movie movie);
+        Movie UpdateMovie(Movie movie);
+        void DeleteMovie(int movieId);
+    }
+}
