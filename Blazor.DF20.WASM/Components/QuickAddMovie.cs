@@ -22,7 +22,6 @@ namespace Blazor.DF20.WASM.Components
         {
             await movieService.AddMovie(Movie);
             await AddMovieEventCallBack.InvokeAsync(true);
-            StateHasChanged();
         }
     }
 }
