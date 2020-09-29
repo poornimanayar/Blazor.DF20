@@ -7,7 +7,7 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 
-<ChildCounter ChildCounterValue="currentCount"></ChildCounter>
+<ChildCounter @bind-ChildCounterValue="currentCount"></ChildCounter>
 
 <ChildCounterUpdate @bind-ChildCounterUpdateValue="currentCount"></ChildCounterUpdate>
 

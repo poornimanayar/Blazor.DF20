@@ -1,0 +1,17 @@
+﻿@page "/routeparameter/{value}"
+@page "/routeparameter"
+
+<h3>RouteParameter</h3>
+
+
+<p>
+    The value is @Value
+</p>
+<DisplayText Text="Hello World"></DisplayText>
+
+@code {
+
+    [Parameter]
+    public string Value { get; set; }
+
+}

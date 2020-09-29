@@ -16,11 +16,13 @@ namespace Blazor.DF20.WASM.Components
         [Parameter]
         public EventCallback<bool> AddMovieEventCallBack { get; set; }
 
-        public Movie Movie { get; set; } = new Movie();
+        public string MovieName { get; set; }
+
+        public string MovieNameKeyPress { get; set; }
 
         public async Task AddMovie()
         {
-            await movieService.AddMovie(Movie);
+            await movieService.AddMovie(new Movie() { Name = MovieName });
             await AddMovieEventCallBack.InvokeAsync(true);
         }
     }

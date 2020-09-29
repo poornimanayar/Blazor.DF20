@@ -1,0 +1,38 @@
+﻿@page "/componentdatabinding"
+
+<h2>One-way data binding</h2>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+
+<h2>Two way binding with OnChange - data binding happens when focus is lost (on change)</h2>
+
+
+<input type="text" @bind="@FirstName" placeholder="Enter your name" />
+
+<p>@FirstName</p>
+
+<h2>Two way binding with OnChange - data binding happens when value of the input changes</h2>
+<input type="text" @bind-value="@FirstNameKeyPress" @bind-value:event="oninput" placeholder="Enter your name" />
+
+<p>@FirstNameKeyPress</p>
+
+@code{
+
+    private string FirstName;
+
+
+    private string FirstNameKeyPress;
+
+    private int currentCount;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+
+
+

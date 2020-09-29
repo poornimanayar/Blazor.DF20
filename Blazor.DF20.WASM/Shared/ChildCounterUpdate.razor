@@ -17,4 +17,9 @@
 
         await ChildCounterUpdateValueChanged.InvokeAsync(ChildCounterUpdateValue);
     }
+
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine($"OnParametersSet called {ChildCounterUpdateValue}");
+    }
 }
