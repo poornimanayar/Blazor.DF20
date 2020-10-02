@@ -9,6 +9,15 @@
 
 @code {
 
+    [Parameter]
+    public string FirstName { get; set; }
+
+    [Parameter]
+    public string LastName { get; set; }
+
+    [Parameter]
+    public string JobTitle { get; set; }
+
     public override Task SetParametersAsync(ParameterView parameters)
     {
         foreach(var param in parameters)
@@ -39,17 +48,8 @@
         Console.WriteLine("Component rendered completely");
         Console.WriteLine(firstRender);
         await JSRuntime.InvokeVoidAsync("alerts.showAlert", $"My name is {FirstName}. I am a {JobTitle}");
-       // JSRuntime.InvokeAsync<TValue> - available for deserialising the returned value
+        // JSRuntime.InvokeAsync<TValue> - available for deserialising the returned value
     }
 
-    [Parameter]
-    public string FirstName { get; set; }
-
-    [Parameter]
-    public string LastName { get; set; }
-
-    [Parameter]
-    public string JobTitle { get; set; }
-    
 }
 
