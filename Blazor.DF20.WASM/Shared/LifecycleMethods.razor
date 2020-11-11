@@ -20,12 +20,12 @@
 
     public override Task SetParametersAsync(ParameterView parameters)
     {
-        foreach(var param in parameters)
+        Console.WriteLine("Entering SetParametersAsync");
+
+        foreach (var param in parameters)
         {
             Console.WriteLine($"{param.Name} bound to value from parent component - {param.Value}");
         }
-
-        JobTitle = "Freelance Developer";
 
         Console.WriteLine($"Value of jobtitle parameter - {JobTitle}");
         return base.SetParametersAsync(parameters);
@@ -38,17 +38,19 @@
 
     protected override Task OnParametersSetAsync()
     {
-        Console.WriteLine("Parameter value changed");
+        Console.WriteLine("On Parameters Set Method run");
         return base.OnParametersSetAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-
-        Console.WriteLine("Component rendered completely");
-        Console.WriteLine(firstRender);
-        await JSRuntime.InvokeVoidAsync("alerts.showAlert", $"My name is {FirstName}. I am a {JobTitle}");
-        // JSRuntime.InvokeAsync<TValue> - available for deserialising the returned value
+        if (firstRender)
+        {
+            Console.WriteLine("Component rendered completely");
+            Console.WriteLine(firstRender);
+            await JSRuntime.InvokeVoidAsync("alerts.showAlert", $"My name is {FirstName}.");
+            // JSRuntime.InvokeAsync<TValue> - available for deserialising the returned value
+        }
     }
 
 }
