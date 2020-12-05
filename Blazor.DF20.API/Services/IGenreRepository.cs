@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Blazor.DF20.Shared.Models;
+﻿using System.Collections.Generic;
+using Genre = Blazor.DF20.API.Models.Genre;
 
 namespace Blazor.DF20.API.Services
 {

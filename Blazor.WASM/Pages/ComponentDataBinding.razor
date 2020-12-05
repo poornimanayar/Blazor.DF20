@@ -1,0 +1,61 @@
+﻿@page "/componentdatabinding"
+
+<h2>One-way data binding</h2>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+
+<h2>One-way data binding MouseEventArgs</h2>
+
+<p>Current count: @currentCountEventArgs</p>
+
+<button class="btn btn-primary" @onclick="IncrementCountEventArgs">Click me</button>
+
+<h2>One-way data binding MouseEventArgs</h2>
+
+<input type="text" @onkeypress="OnTextInput"/>
+
+<h2>Two way binding with OnChange - data binding happens when focus is lost (on change)</h2>
+
+<input type="text" @bind="@FirstName" placeholder="Enter your name" />
+
+<p>@FirstName</p>
+
+<h2>Two way binding with OnInput - data binding happens when value of the input changes</h2>
+<input type="text" @bind="@FirstNameInput" @bind:event="oninput" placeholder="Enter your name" />
+
+<p>@FirstNameInput</p>
+
+@code{
+
+    private string FirstName;
+
+    private string FirstNameInput;
+
+    private int currentCount;
+
+    private int currentCountEventArgs;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    private void OnTextInput(KeyboardEventArgs e)
+    {
+        Console.WriteLine(e.Key);
+    }
+
+    private void IncrementCountEventArgs(MouseEventArgs e)
+    {
+        currentCountEventArgs++;
+
+        //left=0, middle=1,right=2
+        Console.WriteLine(e.Button);
+    }
+}
+
+
+

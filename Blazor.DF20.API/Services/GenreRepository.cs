@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Blazor.DF20.Shared.Models;
+using Genre = Blazor.DF20.API.Models.Genre;
 
 namespace Blazor.DF20.API.Services
 {

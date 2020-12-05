@@ -1,0 +1,22 @@
+﻿@page "/ComponentTwoWayComms"
+
+<h1>Parent Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+
+<ChildCounter @bind-ChildCounterValue="currentCount"></ChildCounter>
+
+<ChildCounterUpdate @bind-ChildCounterUpdateValue="currentCount"></ChildCounterUpdate>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+      
+}

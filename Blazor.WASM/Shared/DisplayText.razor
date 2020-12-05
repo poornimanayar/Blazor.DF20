@@ -1,0 +1,18 @@
+﻿@if (string.IsNullOrWhiteSpace(Text))
+{
+    <h3>@FallbackText</h3>
+}
+else
+{
+    <h3>@Text</h3>
+}
+
+
+@code {
+
+    [CascadingParameter(Name = "SharedTextName")]
+    private string FallbackText { get; set; }
+
+    [Parameter]
+    public string Text { get; set; }
+}

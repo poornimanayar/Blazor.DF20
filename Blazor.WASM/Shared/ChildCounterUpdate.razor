@@ -1,0 +1,25 @@
+﻿<h3>Child Counter With Child-To-Parent Binding</h3>
+
+<p>Current count: @ChildCounterUpdateValue</p>
+
+<button class="btn btn-primary" @onclick="IncrementCountChild">Update parent counter</button>
+
+@code {
+    [Parameter]
+    public int ChildCounterUpdateValue { get; set; }
+
+    [Parameter]
+    public EventCallback<int> ChildCounterUpdateValueChanged { get; set; }
+
+    private async Task IncrementCountChild()
+    {
+        ChildCounterUpdateValue = ChildCounterUpdateValue + 1;
+
+        await ChildCounterUpdateValueChanged.InvokeAsync(ChildCounterUpdateValue);
+    }
+
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine($"OnParametersSet called {ChildCounterUpdateValue}");
+    }
+}

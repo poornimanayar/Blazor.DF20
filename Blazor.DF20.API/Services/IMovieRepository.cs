@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Blazor.DF20.Shared.Models;
+using Movie = Blazor.DF20.API.Models.Movie;
 
 namespace Blazor.DF20.API.Services
 {

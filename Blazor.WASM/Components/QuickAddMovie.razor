@@ -1,0 +1,28 @@
+﻿<h3>Add Movie</h3>
+
+<EditForm Model="@movie" OnValidSubmit="@AddMovie">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <ValidationSummary></ValidationSummary>
+
+    <p>
+        <InputText @bind-Value="movie.Name" placeholder="Movie Name" />
+    </p>
+
+    <p>
+        <InputNumber @bind-Value="movie.ReleaseYear"/>
+    </p>
+
+    <p>
+        <InputSelect @bind-Value="movie.GenreId">
+            @foreach (var genre in Genres)
+            {
+                <option value="@genre.Id">@genre.Name</option>
+            }
+        </InputSelect>
+    </p>
+
+    <p>
+        <button type="submit">Add Movie</button>
+    </p>
+</EditForm>
+

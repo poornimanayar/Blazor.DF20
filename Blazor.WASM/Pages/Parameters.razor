@@ -1,0 +1,30 @@
+﻿@page "/parameters/{value}"
+@page "/parameters/{value}/{othervalue}"  
+@page "/parameters/{value}/Hello"  
+@page "/parameters"
+
+<h3>RouteParameter</h3>
+
+
+<p>
+    Value - @Value
+</p>
+
+
+<p>
+    OtherValue -   @OtherValue
+</p>
+
+
+@*Call the display text component*@
+<DisplayText Text="This is a component parameter"></DisplayText>
+
+@code {
+
+    [Parameter]
+    public string Value { get; set; }
+
+    [Parameter]
+    public string OtherValue { get; set; }
+
+}

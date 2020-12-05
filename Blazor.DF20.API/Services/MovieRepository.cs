@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Blazor.DF20.Shared.Models;
-using Microsoft.EntityFrameworkCore;
+using Movie = Blazor.DF20.API.Models.Movie;
 
 namespace Blazor.DF20.API.Services
 {

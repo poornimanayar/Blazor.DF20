@@ -1,0 +1,57 @@
+﻿@inject IJSRuntime JSRuntime
+
+<h3>Lifecycle Methods</h3>
+
+<p>@FirstName @LastName</p>
+<p>@JobTitle</p>
+
+
+
+@code {
+
+    [Parameter]
+    public string FirstName { get; set; }
+
+    [Parameter]
+    public string LastName { get; set; }
+
+    [Parameter]
+    public string JobTitle { get; set; }
+
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        Console.WriteLine("Entering SetParametersAsync");
+
+        foreach (var param in parameters)
+        {
+            Console.WriteLine($"{param.Name} bound to value from parent component - {param.Value}");
+        }
+
+        Console.WriteLine($"Value of jobtitle parameter - {JobTitle}");
+        return base.SetParametersAsync(parameters);
+    }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("Component initialised");
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        Console.WriteLine("On Parameters Set Method run");
+        return base.OnParametersSetAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Console.WriteLine("Component rendered completely");
+            Console.WriteLine(firstRender);
+            await JSRuntime.InvokeVoidAsync("alerts.showAlert", $"My name is {FirstName}.");
+            // JSRuntime.InvokeAsync<TValue> - available for deserialising the returned value
+        }
+    }
+
+}
+

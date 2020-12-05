@@ -12,6 +12,6 @@ namespace Blazor.DF20.Shared.Models
 
         public int GenreId { get; set; }
 
-        public virtual Genre Genre { get; set; }
+        public Genre Genre { get; set; }
     }
 }
