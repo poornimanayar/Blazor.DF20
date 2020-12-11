@@ -1,6 +1,8 @@
 ﻿@page "/baseclassexample"
 @inherits Blazor.WASM.ComponentBaseClasses.ComponentBaseClassExample
 
-<h3>Component With Base Class</h3>
+<h1>Component with C# partial class</h1>
 
-<p>@SomeStringValue</p>
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>

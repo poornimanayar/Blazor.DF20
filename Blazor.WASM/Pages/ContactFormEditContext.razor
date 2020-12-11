@@ -1,0 +1,136 @@
+﻿@page "/contactformeditcontext"
+@using Blazor.WASM.Models
+@using Blazor.WASM.Enums
+@using Blazor.WASM.Validation
+
+<h3>Contact Form(Edit Context Example)</h3>
+
+
+<EditForm EditContext="@editContext" OnSubmit="SubmitForm">
+    <DataAnnotationsValidator  />
+    <ValidationSummary />
+
+    <p>
+        <label for="firstname">FirstName</label>
+        <InputText id="firstname" @bind-Value="contactFormModel.FirstName" placeholder="First Name" someattribute="value1" />
+        <ValidationMessage For="() => contactFormModel.FirstName"></ValidationMessage>
+    </p>
+    <p>
+        Last Name :
+        <InputText @bind-Value="contactFormModel.LastName" placeholder="Last Name" />
+        <ValidationMessage For="() => contactFormModel.LastName"></ValidationMessage>
+    </p>
+    <p>
+        Phone :
+        <InputText @bind-Value="contactFormModel.Phone" placeholder="Phone" />
+        <ValidationMessage For="() => contactFormModel.Phone"></ValidationMessage>
+    </p>
+    <p>
+        Email :
+        <InputText @bind-Value="contactFormModel.Email" placeholder="Email" />
+        <ValidationMessage For="() => contactFormModel.Email"></ValidationMessage>
+    </p>
+    <p>
+        Message :
+        <InputTextArea @bind-Value="contactFormModel.Message" placeholder="Message" />
+    </p>
+    <p>
+        Date of Joining :
+        <InputDate @bind-Value="contactFormModel.DateOfJoining" placeholder="Date of joining" />
+        <ValidationMessage For="() => contactFormModel.DateOfJoining"></ValidationMessage>
+    </p>
+    <p>
+        Age :
+        <InputNumber @bind-Value="contactFormModel.Age" placeholder="Age" />
+        <ValidationMessage For="() => contactFormModel.Age"></ValidationMessage>
+    </p>
+    <p>
+        Password :
+        <InputText @bind-Value="contactFormModel.Password" type="password" placeholder="Password" />
+        <ValidationMessage For="() => contactFormModel.Password"></ValidationMessage>
+    </p>
+    <p>
+        Confirm Password :
+        <InputText @bind-Value="contactFormModel.ConfirmPassword" type="password" placeholder="Confirm Password" />
+        <ValidationMessage For="() => contactFormModel.ConfirmPassword"></ValidationMessage>
+    </p>
+    
+    <p>
+        Favourite Colour :
+        <InputRadioGroup @bind-Value="contactFormModel.FavouriteColour">
+            Manufacturer:
+            <br>
+            @foreach (var colour in (Colour[])Enum
+                .GetValues(typeof(Colour)))
+            {
+                <InputRadio Value="colour" />
+                @colour
+                <br>
+            }
+        </InputRadioGroup>
+        <ValidationMessage For="() => contactFormModel.FavouriteColour"></ValidationMessage>
+    </p>
+
+    <p>
+        Hobby :
+        <InputSelect @bind-Value="contactFormModel.Hobby">
+            Manufacturer:
+            <option value="">Select</option>
+            @foreach (var hobby in (Hobby[])Enum
+                .GetValues(typeof(Hobby)))
+            {
+                <option value="@hobby">@hobby</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="() => contactFormModel.Hobby"></ValidationMessage>
+    </p>
+
+    <p>
+        Accept Terms :
+        <InputCheckbox @bind-Value="contactFormModel.AcceptedTerms" />
+        <ValidationMessage For="() => contactFormModel.AcceptedTerms"></ValidationMessage>
+    </p>
+
+    <button type="submit">Submit Form</button>
+
+</EditForm>
+
+@if (Submitted)
+{
+    <p>Yay :)</p>
+}
+@if (Invalid)
+{
+    <p>Oh no! Try again later...</p>
+}
+
+@code {
+
+    private ContactFormDTO contactFormModel = new ContactFormDTO();
+
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(contactFormModel);
+        editContext.SetFieldCssClassProvider(new MyCustomValidationClass());
+    }
+
+    private bool Submitted;
+
+    private bool Invalid;
+
+    private void SubmitForm()
+    {
+        if(editContext.Validate())
+        {
+
+            Invalid = false;
+            Submitted = true;
+        }
+    }
+
+
+}
+
+

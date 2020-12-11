@@ -1,0 +1,24 @@
+﻿@page "/attributesplatting"
+
+<h3>Attribute Splatting in Components</h3>
+
+<SurveyPrompt Title="Hello World"></SurveyPrompt>
+
+<AttributeSplattingChildComponent hello1="world" hello2="world" hello="world1"></AttributeSplattingChildComponent>
+
+
+<AttributeSplattingChildComponent InputAttributes="@InputAttributes"></AttributeSplattingChildComponent>
+
+
+@code
+{
+    public Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>()
+        {
+            { "maxlength", "10" },
+            { "placeholder", "Input placeholder text" },
+            { "required", "required" },
+            { "something", "50" }
+            };
+}
+

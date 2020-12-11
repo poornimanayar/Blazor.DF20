@@ -1,0 +1,9 @@
+﻿<input @attributes="InputAttributes"  hello="world"/>
+
+@code
+{
+    [Parameter(CaptureUnmatchedValues = true)]
+    //[Parameter]
+    public Dictionary<string, object> InputAttributes { get; set; }
+
+}

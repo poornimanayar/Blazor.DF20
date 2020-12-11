@@ -14,3 +14,11 @@ Blazor.DF20.Shared/obj/
 Blazor.DF20.WASM/bin/
 
 Blazor.DF20.WASM/obj/
+
+Blazor.WASM/bin/
+
+Blazor.MyComponentLibrary/bin/
+
+Blazor.MyComponentLibrary/obj/
+
+Blazor.WASM/obj/

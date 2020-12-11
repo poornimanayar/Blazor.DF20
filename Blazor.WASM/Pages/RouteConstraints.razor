@@ -1,0 +1,10 @@
+﻿@page "/routeconstraints/{id:int}" 
+
+@*route constraints can be on optional parameters too*@
+
+<h1>The user Id is @Id!</h1>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+}
